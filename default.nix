@@ -1,9 +1,6 @@
-{ source ? import ./source, tag ? "master", version ? "8.8.3" }:
+{ pkgs, tag ? "master", version ? "8.8.3" }:
 let
-  haskellNix = import source.haskell-nix { };
   l = file: builtins.fromJSON (builtins.readFile file);
-
-  pkgs = import haskellNix.sources.nixpkgs-2003 haskellNix.nixpkgsArgs;
 
   hsPkgs = with pkgs.haskell-nix;
     stackProject {
